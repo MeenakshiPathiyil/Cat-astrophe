@@ -10,6 +10,17 @@ const commonTypos = {
     "wich":"which"
 }
 
+function shuffleWords(sentence) {
+    let words = sentence.split(" ");
+    if (words.length > 1) {
+        for (let i = words.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [words[i], words[j]] = [words[j], words[i]]; 
+        }
+    }
+    return words.join(" ");
+}
+
 function checkTypo(event){
     let typedText = event.target.value; 
     if (!typedText) return;
@@ -17,6 +28,8 @@ function checkTypo(event){
     Object.keys(commonTypos).forEach(typo=>{
         if(typedText.includes(typo)){
             showCatPopup(`bitch what you high on?You just typed  "${typo}" instead of "${commonTypos[typo]}" 😾`);
+
+            event.target.value = shuffleWords(typedText);
         }
     });
 }
