@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Cat-astrophe",
+    "version": 1.0,
+    "description": "Sassy cat assistant",
+    "permissions": ["storage","activeTab","tabs"],
+    "host_permissions": ["*://*/*"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
