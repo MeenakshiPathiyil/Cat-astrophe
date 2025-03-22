@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     messageElement.textContent = randomMessage;
 
     
-    // try {
-    //     const response = await fetch("https://source.unsplash.com/?cat");
-    //     imageElement.src = response.url;
-    // } catch (error) {
-    //     console.error("Failed to fetch cat image:", error);
-    //     messageElement.textContent = "Error fetching sass!";
-    // }
+    try {
+        const response = await fetch("https://source.unsplash.com/?cat");
+        imageElement.src = response.url;
+    } catch (error) {
+        console.error("Failed to fetch cat image:", error);
+        messageElement.textContent = "Error fetching sass!";
+    }
 });

@@ -12,19 +12,19 @@ const commonTypos = {
 
 function checkTypo(event){
     let typedText = event.target.value; 
-    if(!typedText) return;
+    if (!typedText) return;
 
     Object.keys(commonTypos).forEach(typo=>{
         if(typedText.includes(typo)){
-            showCatpopup('bitch what you high on?You just typed  $(typo) instead of ${commonTypos[typo]} 😾');
+            showCatPopup(`bitch what you high on?You just typed  "${typo}" instead of "${commonTypos[typo]}" 😾`);
         }
     });
 }
 
 //dis the passive aggressive cat popup
-function showCatpopup(message){
-    let showCatpopup = document.createElement("div");
-    catpopup.innerText = message;
+function showCatPopup(message){
+    let catPopup = document.createElement("div");
+    catPopup.innerText = message;
     catPopup.style.position = "fixed";
     catPopup.style.bottom = "20px";
     catPopup.style.right = "20px";
@@ -40,4 +40,6 @@ function showCatpopup(message){
         catPopup.remove();
     }, 3000);
 }
-document.addEventListener("input", checkForTypos);
+
+document.addEventListener("input", checkTypo, true);
+

@@ -1,21 +1,26 @@
 {
     "manifest_version": 3,
     "name": "Cat-astrophe",
-    "version": 1.0,
-    "description": "Sassy cat assistant",
-    "permissions": ["storage","activeTab","tabs"],
-    "host_permissions": ["*://*/*"],
-    "action": {
-        "default_popup": "popup.html"
-    },
+    "version": "1.0",
+    "description": "A cat that roasts you for typos and unproductivity",
+    "permissions": ["activeTab", "storage", "tabs", "scripting"],
+    "host_permissions": ["<all_urls>"],
     "background": {
         "service_worker": "background.js"
     },
     "content_scripts": [
         {
-            "matches": ["*://*/*"],
-            "js": ["content.js"],
+            "matches": ["<all_urls>"],
+            "js": ["content.js", "habit-detection.js"],
             "run_at": "document_end"
         }
-    ]
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "cat-paw.png",
+            "48": "cat-paw.png",
+            "128": "cat-paw.png"
+        }
+    }
 }

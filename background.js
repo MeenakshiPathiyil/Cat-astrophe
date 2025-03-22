@@ -1,6 +1,21 @@
 const blockSites = ["youtube.com", "reddit.com"]; // define the blocked sites and timelimit
 const timeLimit = 30*60*1000;
 
+chrome.runtime.onInstalled.addListener(() => {
+    console.log("Sassy Cat Assistant Installed!");
+});
+
+// Debugging: Log any message received by the background script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log("Received message in background script:", message);
+
+    if (message.type === "CHECK_CONNECTION") {
+        console.log("✅ Content script is active on:", sender.tab?.url);
+        sendResponse({ status: "alive" });
+    }
+});
+
+
 chrome.storage.local.get(["siteTimers"], (result) => {
     let siteTimers = result.siteTimers || {}; // check for any previosuly stored timers
 
